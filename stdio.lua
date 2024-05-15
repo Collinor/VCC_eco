@@ -20,7 +20,7 @@ end
 
 
 function LogPrint (string)
-    print ("[", os.time(), "]", string, "/n")
+    print ("[", textutils.formatTime(os.time("local"), true), "]", string, "/n")
     return true   
 end
 
