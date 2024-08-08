@@ -3,6 +3,11 @@
 
 
 
+function init ()
+    return true
+end
+
+
 function HelpPrint (string)
     if string == "" then
         print ("    shutdown [time(int)] ")
