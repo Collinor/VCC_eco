@@ -6,7 +6,19 @@
 require ("stdio")
 require ("function")
 
+
+
 MSG = ""
+Ln = 0
+
+
+
+--
+--init
+ if peripheral.isPresent ("top") then
+    top = peripheral.wrap ("top")
+    else goto EndWhile
+ end
 
 
 
@@ -33,6 +45,8 @@ while true do
 
     ::continue::
 end
+
+::EndWhile::
 
 SystemPrint ("MessageWhile has ended!/n")
 

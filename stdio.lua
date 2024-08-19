@@ -26,6 +26,9 @@ end
 
 
 
-
+function FalsePrint (string)
+    print (" False ")
+    return true
+end
 
 --file end
