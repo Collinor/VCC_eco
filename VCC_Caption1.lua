@@ -1,5 +1,5 @@
 --VCC_eco   VCC_Caption1.lua
---2024 / 5 / 9     19:10:25
+--2024 / 5 / 9     19:10:25     Collinor
 
 
 
@@ -15,7 +15,7 @@ while true do
 
     if MSG == "" then
         if ErrorPrint ("The Message is NULL!") then
-            LogPrint ("False!")
+            SystemPrint ("False!")
         end
         goto continue
     end
