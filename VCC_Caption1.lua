@@ -3,13 +3,14 @@
 
 
 
-require ("stdio")
+--require ("stdio")
 require ("function")
 
 
 
 MSG = ""
-Ln = 0
+MSGLog = {"reroot", ""}
+local pLn = 1
 
 
 
@@ -19,6 +20,47 @@ Ln = 0
     top = peripheral.wrap ("top")
     else goto EndWhile
  end
+
+
+
+--
+--sdtio
+top.setTextColor (colors.Black)
+function SystemPrint (string)
+    top.setBackgroundColor (colors.lightGray)
+    print ("System ")
+    top.setBackgroundColor (colors.White)
+    print (string)
+
+    return true
+end
+
+function ErrorPrint (string)
+    top.setBackgroundColor (colors.yellow)
+    print (" Error ")
+    top.setBackgroundColor (colors.White)
+    print (string)
+
+    return true
+end
+
+function WarnPrint (string)
+    top.setBackgroundColor (colors.orange)
+    print ("Warning")
+    top.setBackgroundColor (colors.White)
+    print (string)
+
+    return true
+end
+
+function FalsePrint (string)
+    top.setBackgroundColor (colors.red)
+    print (" False ")
+    top.setBackgroundColor (colors.White)
+    print (string)  
+
+    return true
+end
 
 
 
@@ -48,6 +90,6 @@ end
 
 ::EndWhile::
 
-SystemPrint ("MessageWhile has ended!/n")
+FalsePrint ("MessageWhile has ended!\n")
 
 --file end
