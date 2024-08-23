@@ -8,10 +8,14 @@ require ("function")
 
 
 
-MSG = ""
-MSGLog = {{0, 0, 0, ""}}
+MSG = nil
+MSGLog = {{0, nil, ""}, {0, nil, ""}}
+MSGCmd = {{0, 0, 0, ""}, {0, 0, 0, ""}}
 
-local pLn = 1
+LogLn = 1
+CmdLn = 1
+
+Permissions = {{0, "Admin"}, {1, "User"}, {2, "Guest"}}
 
 
 
@@ -24,56 +28,82 @@ local pLn = 1
 
 
 
+
+
 --
---stdio
+--logio
 top.setTextColor (colors.Black)
 function SystemPrint (string)
     top.blit ("System ", colors.black, colors.lightGray)
-    top.blit (string, colors.black, colors.white)
-    print ("\n")
+    top.blit (string.."\n", colors.black, colors.white)
+    MSGLog[LogLn] = {0, nil, string}
+    LogLn = LogLn + 1
 
     return true
 end
 
 function ErrorPrint (string)
     top.blit (" Error ", colors.black, colors.yellow)
-    top.blit (string, colors.black, colors.white)
-    print ("\n")
+    top.blit (string.."\n", colors.black, colors.white)
+    MSGLog[LogLn] = {1, nil, string}
+    LogLn = LogLn + 1
 
     return true
 end
 
 function WarnPrint (string)
     top.blit ("Warning", colors.black, colors.orange)
-    top.blit (string, colors.black, colors.white)
-    print ("\n")
+    top.blit (string.."\n", colors.black, colors.white)
+    MSGLog[LogLn] = {2, nil, string}
+    LogLn = LogLn + 1
 
     return true
 end
 
 function FalsePrint (string)
     top.blit (" False ", colors.white, colors.red)
-    top.blit (string, colors.black, colors.white)
-    print ("\n")
+    top.blit (string.."\n", colors.black, colors.white)
+    MSGLog[LogLn] = {3, 1, string}
+    LogLn = LogLn + 1
+    MSG = "False"
 
     return true
 end
 
 
 
-while true do
+
+
+--
+--stdio
+function AdminPrint (string)
+    top.blit (LogLn, colors.white, colors.black)
+    top.blit ("Admin", colors.black, colors.lightGray)
     
-    if MSG == "False" then break end
+end
 
-    -- 从标准输入读取一行数据赋值给变量 MSG
-    MSG = io.read ()
 
-    if MSG == "" then
-        if ErrorPrint ("The Message is NULL!") then
-            SystemPrint ("False!")
-        end
-        goto continue
+
+
+
+while true do
+    if MSG == "False" then goto EndWhile end        -- 检查是否严重错误
+
+    MSG = nil                               -- 清空MSG
+    MSG = io.read ()                        -- 从标准输入读取一行数据赋值给变量 MSG
+    if MSG == nil then goto continue end    -- 检查是否读取成功
+    if MSG == "" then goto continue end     -- 检查是否为空
+
+    LogTime = os.date ("%Y/%m/%d %H:%M:%S") -- 记录日志时间
+    CmdTime = os.date ("%H:%M:%S")          -- 记录命令时间
+    if MSG == "exit" then                   -- 是否退出
+        SystemPrint ("Exiting...")
+        goto EndWhile
     end
+
+
+    
+
 
     if MSG == "help" then
         HelpPrint ("")
@@ -82,9 +112,6 @@ while true do
 
 
 
-    if MSG == "shutdown" or "exit" then
-        break
-    end
 
     ::continue::
 end
