@@ -65,6 +65,7 @@ while true do
     
     if MSG == "False" then break end
 
+    -- 从标准输入读取一行数据赋值给变量 MSG
     MSG = io.read ()
 
     if MSG == "" then
