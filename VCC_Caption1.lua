@@ -9,7 +9,8 @@ require ("function")
 
 
 MSG = ""
-MSGLog = {"reroot", ""}
+MSGLog = {{0, 0, 0, ""}}
+
 local pLn = 1
 
 
@@ -24,40 +25,36 @@ local pLn = 1
 
 
 --
---sdtio
+--stdio
 top.setTextColor (colors.Black)
 function SystemPrint (string)
-    top.setBackgroundColor (colors.lightGray)
-    print ("System ")
-    top.setBackgroundColor (colors.White)
-    print (string)
+    top.blit ("System ", colors.black, colors.lightGray)
+    top.blit (string, colors.black, colors.white)
+    print ("\n")
 
     return true
 end
 
 function ErrorPrint (string)
-    top.setBackgroundColor (colors.yellow)
-    print (" Error ")
-    top.setBackgroundColor (colors.White)
-    print (string)
+    top.blit (" Error ", colors.black, colors.yellow)
+    top.blit (string, colors.black, colors.white)
+    print ("\n")
 
     return true
 end
 
 function WarnPrint (string)
-    top.setBackgroundColor (colors.orange)
-    print ("Warning")
-    top.setBackgroundColor (colors.White)
-    print (string)
+    top.blit ("Warning", colors.black, colors.orange)
+    top.blit (string, colors.black, colors.white)
+    print ("\n")
 
     return true
 end
 
 function FalsePrint (string)
-    top.setBackgroundColor (colors.red)
-    print (" False ")
-    top.setBackgroundColor (colors.White)
-    print (string)  
+    top.blit (" False ", colors.white, colors.red)
+    top.blit (string, colors.black, colors.white)
+    print ("\n")
 
     return true
 end
@@ -65,7 +62,10 @@ end
 
 
 while true do
-    io.input (string.lower(MSG))
+    
+    if MSG == "False" then break end
+
+    MSG = io.read ()
 
     if MSG == "" then
         if ErrorPrint ("The Message is NULL!") then
