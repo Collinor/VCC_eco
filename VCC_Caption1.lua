@@ -63,9 +63,9 @@ function ErrorPrint (string)
     return true
 end
 
-function FalsePrint (string)
+function FalatPrint (string)
     top.blit (CmdTime, colors.orange, colors.white)
-    top.blit (" False ", colors.white, colors.red)
+    top.blit (" Falat ", colors.white, colors.red)
     top.blit (string.."\n", colors.black, colors.white)
     MSGLog[LogLn] = {3, true, string.."\n"}
     LogLn = LogLn + 1
@@ -99,7 +99,7 @@ while true do
     if MSG == "" then goto continue end     -- 检查是否为空
 
     LogTime = os.date ("%Y/%m/%d %H:%M:%S") -- 记录日志时间
-    CmdTime = os.date ("[%H:%M:%S]")          -- 记录命令时间
+    CmdTime = os.date ("[%H:%M:%S]")        -- 记录命令时间
     if MSG == "exit" then                   -- 是否退出
         SystemPrint ("Exiting...")
         goto EndWhile

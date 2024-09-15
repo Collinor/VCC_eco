@@ -3,7 +3,7 @@
 
 
 
-
+WarnPoint = {0, 0}
 
 function SystemPrint (string)
     print ("System ")
@@ -28,6 +28,22 @@ end
 
 function FalsePrint (string)
     print (" False ")
+    return true
+end
+
+
+
+function HTTPStream (uid, string)
+    
+    return true
+end
+
+
+
+function MapInit ()
+    top.setbackgroundColor (colors.blue)
+    top.clear()
+    top.blit ("", colors.black, colors.red)
     return true
 end
 
