@@ -31,7 +31,7 @@ Permissions = {{0, "Admin"}, {1, "User"}, {2, "Guest"}}
 
 
 --
---logio
+--Logio
 top.setTextColor (colors.Black)
 function SystemPrint (string)
     top.blit (CmdTime, colors.gray, colors.white)
@@ -63,9 +63,9 @@ function ErrorPrint (string)
     return true
 end
 
-function FalsePrint (string)
+function FalatPrint (string)
     top.blit (CmdTime, colors.orange, colors.white)
-    top.blit (" False ", colors.white, colors.red)
+    top.blit (" Falat ", colors.white, colors.red)
     top.blit (string.."\n", colors.black, colors.white)
     MSGLog[LogLn] = {3, true, string.."\n"}
     LogLn = LogLn + 1
