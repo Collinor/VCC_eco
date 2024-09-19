@@ -58,11 +58,20 @@ end
 
 --
 --SendMessage
-function Message (string)
-    rednet.open("back")
-    ret = rednet.send (1, string, PoM)
-    rednet.close("back")
-    return ret
+function MessageExp (uid, string)
+    if not rednet.send (uid, string, PoM) then
+        ErrorPrint ("Failed to connect to Computer No."..uid)
+        return false
+    end
+    return true
+end
+
+function SendMessages (uid, string, Key)
+    if not rednet.send (uid, Key..string, PoM) then
+        ErrorPrint ("Failed to connect to Computer No."..uid)
+        return false
+    end
+    return true
 end
 
 
