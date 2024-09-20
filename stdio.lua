@@ -1,8 +1,13 @@
 --VCC_eco   stdio.lua
 --2024 / 5 / 15     17:14:55     Collinor
 
-local KoM = ""          -- Key of Message
-local PoM = "VCC_eco"   -- Protocol of Message
+local KoM = ""                  -- Key of Message
+local PoM = ""                  -- Protocol of Message
+local ItC = ""                  -- Initial Computer
+local id  = getComputerID ()    -- Computer ID
+
+
+
 
 
 --
@@ -57,23 +62,31 @@ end
 
 
 --
---SendMessage
+--Message
 function MessageExp (uid, string)
     if not rednet.send (uid, string, PoM) then
-        ErrorPrint ("Failed to connect to Computer No."..uid)
+        ErrorPrint ("Failed to connect to Computer uid"..uid)
         return false
     end
     return true
 end
 
-function SendMessages (uid, string, Key)
-    if not rednet.send (uid, Key..string, PoM) then
-        ErrorPrint ("Failed to connect to Computer No."..uid)
+function InitMessage (uid, classify)
+    if not rednet.send (uid, classify, ItC) then
+        ErrorPrint ("Failed to find Computer uid "..uid)
         return false
     end
     return true
 end
 
+
+function SendMessages (uid, string, Key)                        -- "id_to_uid-key-string-EOM"
+    if not rednet.send (uid, id.."_to_"..uid..Key..string.."EOM", PoM) then
+        ErrorPrint ("Failed to connect to Computer uid "..uid)
+        return false
+    end
+    return true
+end
 
 
 --file end
