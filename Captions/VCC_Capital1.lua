@@ -31,7 +31,7 @@ Permissions = {{0, "Admin"}, {1, "User"}, {2, "Guest"}}
 
 
 --
---logio
+--Logio
 top.setTextColor (colors.Black)
 function SystemPrint (string)
     top.blit (CmdTime, colors.gray, colors.white)
