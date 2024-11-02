@@ -15,8 +15,6 @@ MSGCmd = {{0, 0, 0, ""}, {0, 0, 0, ""}}
 LogLn = 1
 CmdLn = 1
 
-Permissions = {{0, "Admin"}, {1, "User"}, {2, "Guest"}}
-
 
 
 --

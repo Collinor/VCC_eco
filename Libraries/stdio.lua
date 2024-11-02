@@ -6,6 +6,14 @@
 WarnPoint = {0, 0}
 
 
+
+function iofeedback(string)
+    print("<"..localPermission[2]..">"..string)
+    return true
+end
+
+
+
 --
 --Cmdio
 
