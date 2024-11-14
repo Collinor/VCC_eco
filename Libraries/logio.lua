@@ -3,6 +3,11 @@
 
 
 
+LogTime = os.date ("%Y/%m/%d %H:%M:%S") -- 记录日志时间
+CmdTime = os.date ("[%H:%M:%S]")        -- 记录命令时间
+
+
+
 --
 --Logio
 top.setTextColor (colors.Black)

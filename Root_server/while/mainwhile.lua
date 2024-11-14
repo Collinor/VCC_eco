@@ -17,7 +17,7 @@ while true do
         if string.sub(MSG, i+1, i+2) == "||" then
             for j = 1, i do
                 if string.sub(MSG, j, j) == " " then
-                    CMD = string.sub(MSG, 1, j-1)
+                    CMD   = string.sub(MSG, 1, j-1)
                     tArgs = string.sub(MSG, j+1, i)
                     break
                 end
