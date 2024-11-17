@@ -6,7 +6,7 @@
 local KoM = ""                  -- Key of Message
 local PoM = ""                  -- Protocol of Message
 local ItC = ""                  -- Initial Computer
-local id  = getComputerID ()    -- Computer ID
+local modem = rednet.open("back")
 
 
 
@@ -49,4 +49,11 @@ function SendMessages (uid, string, Key)                        -- "id_to_uid-ke
         return false
     end
     return true
+end
+
+function ConnectionCheck()
+    if rednet.isopen("modem") then
+        
+    end
+    
 end

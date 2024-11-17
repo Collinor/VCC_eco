@@ -3,6 +3,6 @@
 
 
 
-while true do
+while run("") do
     
 end
