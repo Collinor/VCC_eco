@@ -6,7 +6,14 @@
 local KoM = ""                  -- Key of Message
 local PoM = ""                  -- Protocol of Message
 local ItC = ""                  -- Initial Computer
-local modem = rednet.open("back")
+local modem = nil
+
+
+
+function WebInit()
+    modem = peripheral.find("modem") or error("No modem attached", 0)
+    modem.transmit(io.read(), io.read(), "")
+end
 
 
 

@@ -8,6 +8,10 @@ local mode = 0                      -- 0: SS   1: SA
 
 
 
+
+
+WebInit()
+
 for true do
     if mode == 0 then
         
