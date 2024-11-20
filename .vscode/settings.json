@@ -1,0 +1,17 @@
+{
+    "Lua.diagnostics.globals": [
+        "colors",
+        "peripheral",
+        "textutils",
+        "commands",
+        "coordinate",
+        "ship",
+        "term",
+        "sleep",
+        "redstone",
+        "gps",
+        "run",
+        "parallel",
+        "rednet"
+    ]
+}
