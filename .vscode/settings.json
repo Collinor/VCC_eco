@@ -1,17 +1,48 @@
 {
+    "Lua.runtime.version": "Lua 5.2",
     "Lua.diagnostics.globals": [
+        "bit",
         "colors",
-        "peripheral",
-        "textutils",
+        "colours",
         "commands",
-        "coordinate",
-        "ship",
-        "term",
-        "sleep",
-        "redstone",
+        "disk",
+        "fs",
         "gps",
-        "run",
+        "help",
+        "http",
+        "keys",
+        "multishell",
+        "paintutils",
         "parallel",
-        "rednet"
-    ]
+        "peripheral",
+        "pocket",
+        "rednet",
+        "redstone",
+        "rs",
+        "settings",
+        "shell",
+        "term",
+        "textutils",
+        "turtle",
+        "vector",
+        "window",
+        "_CC_DEFAULT_SETTINGS",
+        "_HOST",
+        "printError",
+        "write",
+        "read",
+        "sleep",
+        "ship",
+        "coordinate",
+        "ag"
+    ],
+    "Lua.runtime.builtin": {
+        "bit32": "enable",
+        "bit": "disable",
+        "utf8": "enable"
+    },
+    "Lua.diagnostics.disable": [
+        "undefined-field",
+        "deprecated"
+    ],
 }
