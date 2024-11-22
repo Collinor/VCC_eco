@@ -3,16 +3,49 @@
 
 
 
-local KoM = ""                  -- Key of Message
-local PoM = ""                  -- Protocol of Message
-local ItC = ""                  -- Initial Computer
+
 local modem = nil
 
 
 
+local webio = 
+{
+    uid                 = os.getComputerID(),
+    ulable              = os.getComputerLabel(),
+    KeyofMessage        = nil,
+    ProtocolofMessage   = nil,
+    RootAddress         = nil
+}
+
+
+
 function WebInit()
-    modem = peripheral.find("modem") or error("No modem attached", 0)
-    modem.transmit(io.read(), io.read(), "")
+    if not fs.exists("VCC_sys/web/init.json") then
+        ErrorPrint ("[WebInit] cannot be executed normally:No init.json")
+        return false
+    end
+    local file = fs.open("VCC_sys/web/init.json", "r")
+    local temp = {}
+    while true do
+        temp[#temp+1] = file.readLine()
+        if not temp[#temp] then
+            ErrorPrint ("[WebInit] cannot be executed normally:The JSON file is incomplete")
+            break
+        end
+    end
+    webio.KeyofMessage = temp[1]
+    webio.ProtocolofMessage = temp[2]
+    webio.RootAddress = temp[3]
+
+    modem = peripheral.find("modem") or ErrorPrint("[WebInit] cannot be executed normally:No modem attached")
+    if not rednet.isOpen("modem") then
+        ErrorPrint ("[WebInit] cannot be executed normally:Failed to open the rednet")
+        return false
+    end
+    rednet.send(webio.RootAddress, webio.KeyofMessage, webio.ProtocolofMessage)
+    local id, MSG = rednet.receive(webio.ProtocolofMessage, 4)
+
+    return true
 end
 
 

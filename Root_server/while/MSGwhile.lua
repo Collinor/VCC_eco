@@ -3,6 +3,6 @@
 
 
 
-while run("WebCheck n") do
+while os.run("WebCheck n") do
     
 end
