@@ -3,16 +3,22 @@
 
 
 
+require ("webio")
+
+
+
 local state = {{nil, 0, 0, 0},{0, 0, 0, 0},{0, 0, 0, 0}}
 
-local destination
-destination.x = io.read()
-destination.y = io.read()
-destination.z = io.read()
+local destination = 
+{
+    x = nil,
+    y = nil,
+    z = nil
+}
 
 
 
-WebInit()
+webio.Init()
 
 local LaunchPoint
 LaunchPoint.x, LaunchPoint.y, LaunchPoint.z = gps.locate(0.1)

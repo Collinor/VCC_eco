@@ -19,7 +19,7 @@ local webio =
 
 
 
-function WebInit()
+webio.Init = function()
     if not fs.exists("VCC_sys/web/init.json") then
         ErrorPrint ("[WebInit] cannot be executed normally:No init.json")
         return false
@@ -33,9 +33,9 @@ function WebInit()
             break
         end
     end
-    webio.KeyofMessage = temp[1]
+    webio.KeyofMessage      = temp[1]
     webio.ProtocolofMessage = temp[2]
-    webio.RootAddress = temp[3]
+    webio.RootAddress       = temp[3]
 
     modem = peripheral.find("modem") or ErrorPrint("[WebInit] cannot be executed normally:No modem attached")
     if not rednet.isOpen("modem") then
