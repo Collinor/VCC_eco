@@ -44,6 +44,10 @@ webio.Init = function()
     end
     rednet.send(webio.RootAddress, webio.KeyofMessage, webio.ProtocolofMessage)
     local id, MSG = rednet.receive(webio.ProtocolofMessage, 4)
+    if MSG == nil then
+        ErrorPrint ("[WebInit] cannot be executed normally:Failed to connect to the Root Server")
+        return false
+    end
 
     return true
 end
