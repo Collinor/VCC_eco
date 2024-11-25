@@ -4,11 +4,11 @@
 
 
 
-local modem = nil
+modem = nil
 
 
 
-local webio = 
+webio = 
 {
     cid                 = os.getComputerID(),
     ulable              = os.getComputerLabel(),

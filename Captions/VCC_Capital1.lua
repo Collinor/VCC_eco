@@ -108,7 +108,7 @@ while true do
 
 
     if MSG == "help" then
-        HelpPrint ("")
+        --HelpPrint ("")
     end
 
 
@@ -120,6 +120,6 @@ end
 
 ::EndWhile::
 
-FalsePrint ("MessageWhile has ended!\n")
+FalatPrint ("MessageWhile has ended!\n")
 
 --file end
