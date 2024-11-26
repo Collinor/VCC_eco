@@ -47,7 +47,7 @@ webio.Init = function()
         return false
     end
     -- 向根服务器获取uid
-    if not rednet.send(webio.RootAddress, webio.KeyofMessage.."-"..webio.ulable.."-INIT", webio.ProtocolofMessage) then
+    if not rednet.send(webio.RootAddress, webio.KeyofMessage.."_"..webio.ulable.."_INIT", webio.ProtocolofMessage) then
         FalatPrint ("[WebInit] cannot be executed normally:Failed to send the INIT message to the Root Server")
     end
     for i = 1, 4 do
@@ -72,7 +72,7 @@ webio.ConnectionCheck = function()
         return false
     end
 
-    rednet.send(webio.RootAddress, webio.KeyofMessage.."-"..webio.ulable.."-CHECK", webio.ProtocolofMessage)
+    rednet.send(webio.RootAddress, webio.KeyofMessage.."_"..webio.ulable.."_CHECK", webio.ProtocolofMessage)
     for i = 1, 4 do
         local id, MSG = rednet.receive(webio.ProtocolofMessage, 1)
         if id == webio.RootAddress then
@@ -89,7 +89,7 @@ end
 
 
 webio.Send = function(gid, MSG)
-    if not rednet.send(webio.RootAddress, webio.KeyofMessage.."-"..webio.ulable.."-"..MSG, webio.ProtocolofMessage) then
+    if not rednet.send(webio.RootAddress, webio.KeyofMessage.."_"..webio.ulable.."_"..MSG, webio.ProtocolofMessage) then
         FalatPrint ("[WebSend] cannot be executed normally:Failed to send the message to the Root Server")
     end
     while true do
