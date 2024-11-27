@@ -14,6 +14,13 @@ end
 
 
 
+function WaitForNet()
+    sleep (4)
+    return true
+end
+
+
+
 --
 --Cmdio
 
