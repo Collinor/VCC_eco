@@ -38,6 +38,7 @@ webio.Init = function()
     webio.KeyofMessage      = temp[1]
     webio.ProtocolofMessage = temp[2]
     webio.RootAddress       = temp[3]
+    
     -- 初始化网络
     if not modem == peripheral.find("modem") then
         FalatPrint ("[WebInit] cannot be executed normally:No modem attached")
@@ -46,6 +47,7 @@ webio.Init = function()
         FalatPrint ("[WebInit] cannot be executed normally:Failed to open the rednet")
         return false
     end
+
     -- 向根服务器获取uid
     if not rednet.send(webio.RootAddress, webio.KeyofMessage.."_"..webio.ulable.."_INIT", webio.ProtocolofMessage) then
         FalatPrint ("[WebInit] cannot be executed normally:Failed to send the INIT message to the Root Server")
