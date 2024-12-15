@@ -8,7 +8,7 @@ modem = nil
 
 
 
-webio = 
+local webio = 
 {
     cid                 = os.getComputerID(),
     ulable              = os.getComputerLabel(),
@@ -94,7 +94,7 @@ webio.Send = function(gid, MSG)
     if not rednet.send(webio.RootAddress, webio.KeyofMessage.."_"..webio.ulable.."_"..MSG, webio.ProtocolofMessage) then
         FalatPrint ("[WebSend] cannot be executed normally:Failed to send the message to the Root Server")
     end
-    parallel.waitForAny(WaitForNet, webio.RootReceive)
+    --parallel.waitForAny(WaitForNet, webio.RootReceive)
     return nil
 end
 
@@ -111,6 +111,12 @@ end
 
 
 
+webio.RootSend = function(MSG)
+    if not 
+end
+
+
+
 webio.RootReceive = function()
     while true do
         local id, ret = rednet.receive(webio.ProtocolofMessage, 0.05)
@@ -119,3 +125,7 @@ webio.RootReceive = function()
         end
     end
 end
+
+
+
+return webio
