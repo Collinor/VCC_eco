@@ -1,4 +1,4 @@
---VCC_eco   webio.lua
+--VCC_eco   webio.lua -> ModemDevice.lua
 --2024 / 10 / 30     20:18:56     Collinor
 
 
@@ -8,7 +8,7 @@ modem = nil
 
 
 
-local webio = 
+local vccnet = 
 {
     cid                 = os.getComputerID(),
     ulable              = os.getComputerLabel(),
@@ -20,7 +20,7 @@ local webio =
 
 
 
-webio.Init = function()
+vccnet.Init = function()
     -- 从JSON文件中读入设置
     if not fs.exists("VCC_sys/web/init.json") then
         FalatPrint ("[WebInit] cannot be executed normally:No init.json")
@@ -35,9 +35,9 @@ webio.Init = function()
             break
         end
     end
-    webio.KeyofMessage      = temp[1]
-    webio.ProtocolofMessage = temp[2]
-    webio.RootAddress       = temp[3]
+    vccnet.KeyofMessage      = temp[1]
+    vccnet.ProtocolofMessage = temp[2]
+    vccnet.RootAddress       = temp[3]
     
     -- 初始化网络
     if not modem == peripheral.find("modem") then
@@ -49,13 +49,13 @@ webio.Init = function()
     end
 
     -- 向根服务器获取uid
-    if not rednet.send(webio.RootAddress, webio.KeyofMessage.."_"..webio.ulable.."_INIT", webio.ProtocolofMessage) then
+    if not rednet.send(vccnet.RootAddress, vccnet.KeyofMessage.."_"..vccnet.ulable.."_INIT", vccnet.ProtocolofMessage) then
         FalatPrint ("[WebInit] cannot be executed normally:Failed to send the INIT message to the Root Server")
     end
     for i = 1, 4 do
-        local id, MSG = rednet.receive(webio.ProtocolofMessage, 4)
-        if id == webio.RootAddress then
-            webio.uid = MSG
+        local id, MSG = rednet.receive(vccnet.ProtocolofMessage, 4)
+        if id == vccnet.RootAddress then
+            vccnet.uid = MSG
             return true
         end
     end
@@ -67,18 +67,18 @@ end
 
 
 
-webio.ConnectionCheck = function()
+vccnet.ConnectionCheck = function()
     if not rednet.isopen("modem") then
         FalatPrint ("Failed to open the rednet, please check the modem")
         iofeedback ("This Computer will be shut down")
         return false
     end
 
-    rednet.send(webio.RootAddress, webio.KeyofMessage.."_"..webio.ulable.."_CHECK", webio.ProtocolofMessage)
+    rednet.send(vccnet.RootAddress, vccnet.KeyofMessage.."_"..vccnet.ulable.."_CHECK", vccnet.ProtocolofMessage)
     for i = 1, 4 do
-        local id, MSG = rednet.receive(webio.ProtocolofMessage, 1)
-        if id == webio.RootAddress then
-            webio.uid = MSG
+        local id, MSG = rednet.receive(vccnet.ProtocolofMessage, 1)
+        if id == vccnet.RootAddress then
+            vccnet.uid = MSG
             return true
         end
     end
@@ -90,19 +90,19 @@ end
 
 
 
-webio.Send = function(gid, MSG)
-    if not rednet.send(webio.RootAddress, webio.KeyofMessage.."_"..webio.ulable.."_"..MSG, webio.ProtocolofMessage) then
-        FalatPrint ("[WebSend] cannot be executed normally:Failed to send the message to the Root Server")
+vccnet.Send = function(gid, MSG)
+    if not rednet.send(gid, vccnet.KeyofMessage.."_"..vccnet.ulable.."_"..MSG, vccnet.ProtocolofMessage) then
+        FalatPrint ("[WebSend] cannot be executed normally:Failed to send the message to Computer NO."..gid)
     end
-    --parallel.waitForAny(WaitForNet, webio.RootReceive)
+    --parallel.waitForAny(WaitForNet, vccnet.RootReceive)
     return nil
 end
 
 
 
-webio.Receive = function(gid)
+vccnet.Receive = function(gid)
     while true do
-        local id, ret = rednet.receive(webio.ProtocolofMessage, 0.05)
+        local id, ret = rednet.receive(vccnet.ProtocolofMessage, 0.05)
         if id == gid then
             return ret
         end
@@ -111,16 +111,18 @@ end
 
 
 
-webio.RootSend = function(MSG)
-    if not 
+vccnet.RootSend = function(MSG)
+    if not rednet.send(vccnet.RootAddress, vccnet.KeyofMessage.."_"..vccnet.ulable.."_"..MSG, vccnet.ProtocolofMessage) then
+        FalatPrint ("[WebSend] cannot be executed normally:Failed to send the message to the Root Server")
+    end
 end
 
 
 
-webio.RootReceive = function()
+vccnet.RootReceive = function()
     while true do
-        local id, ret = rednet.receive(webio.ProtocolofMessage, 0.05)
-        if id == webio.RootAddress then
+        local id, ret = rednet.receive(vccnet.ProtocolofMessage, 0.05)
+        if id == vccnet.RootAddress then
             return ret
         end
     end
@@ -128,4 +130,4 @@ end
 
 
 
-return webio
+return vccnet

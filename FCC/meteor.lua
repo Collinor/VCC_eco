@@ -3,7 +3,7 @@
 
 
 
-require ("webio")
+local vccnet = require ("Device.ModemDevice")
 
 
 
@@ -18,7 +18,7 @@ local destination =
 
 
 
-webio.Init()
+vccnet.Init()
 
 local LaunchPoint
 LaunchPoint.x, LaunchPoint.y, LaunchPoint.z = gps.locate(0.1)
