@@ -5,7 +5,7 @@
 
 local displayer = {
     width = nil,
-    height = nil,
+    height = nil
 }
 
 
