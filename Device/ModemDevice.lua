@@ -15,7 +15,8 @@ local vccnet =
     KeyofMessage        = nil,
     ProtocolofMessage   = nil,
     RootAddress         = nil,
-    uid                 = nil
+    uid                 = nil,
+    console             = {}
 }
 
 
@@ -61,7 +62,7 @@ vccnet.Init = function()
     end
 
     FalatPrint ("[WebInit] cannot be executed normally:Failed to connect to the Root Server")
-    iofeedback ("This Computer will be shut down")
+    console.write ("This Computer will be shut down")
     return false
 end
 
@@ -70,7 +71,7 @@ end
 vccnet.ConnectionCheck = function()
     if not rednet.isopen("modem") then
         FalatPrint ("Failed to open the rednet, please check the modem")
-        iofeedback ("This Computer will be shut down")
+        console.write ("This Computer will be shut down")
         return false
     end
 
@@ -84,7 +85,7 @@ vccnet.ConnectionCheck = function()
     end
 
     FalatPrint ("[WebInit] cannot be executed normally:Failed to connect to the Root Server")
-    iofeedback ("This Computer will be shut down")
+    console.write ("This Computer will be shut down")
     return false
 end
 

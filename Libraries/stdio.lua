@@ -3,12 +3,15 @@
 
 
 
-WarnPoint = {0, 0}
+local console =
+{
+    status = nil
+}
 
 
 
-function iofeedback(string)
-    print("<"..localPermission[2]..">"..string)
+console.write = function (string)
+    print("<"..console.status..">"..string)
     return true
 end
 
@@ -19,18 +22,4 @@ function WaitForNet()
     return true
 end
 
-
-
---
---Cmdio
-
-
-
-
-
-
-
-
-
-
---file end
+return console
