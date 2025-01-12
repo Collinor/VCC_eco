@@ -3,7 +3,7 @@
 
 
 
-local console =
+console =
 {
     status = nil
 }
