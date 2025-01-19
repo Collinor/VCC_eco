@@ -5,21 +5,37 @@
 
 console =
 {
-    status = nil
+    status = nil,
+    Cursor = {1, 1}
 }
 
 
 
-console.write = function (string)
-    print("<"..console.status..">"..string)
+console.write = function (code, color, x, y)
+    if color then term.setTextColor(color) end
+    if x and y then term.setCursorPos(
+        x, y) end
+
     return true
 end
 
+console.writeText = function (string, color, x, y)
 
+end
+
+console.writeLine = function (string, color, Ln)
+
+end
+
+console.clear = function ()
+
+end
+
+console.refresh = function ()
+
+end
 
 function WaitForNet()
     sleep (4)
     return true
 end
-
-return console
