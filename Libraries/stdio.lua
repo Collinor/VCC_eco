@@ -35,6 +35,10 @@ console.refresh = function ()
 
 end
 
+console.Select = function (stratx, starty, endx, endy)
+    
+end
+
 function WaitForNet()
     sleep (4)
     return true
