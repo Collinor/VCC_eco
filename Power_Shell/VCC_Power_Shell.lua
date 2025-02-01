@@ -3,19 +3,20 @@
 
 
 
-tArgs = {...}
+local tArgs = {...}
 
 local HistoryCmd = {}       -- 历史命令列表
 
 local Cursor = {            -- 光标位置
     x = 1, y = 1
 }
-local CursorTemp = nil      -- 光标对应字符
 local selectPos = {         -- 选择区域终点
     x = nil, y = nil
 }
 
-local eventData = nil       -- 事件数据
+local InputW, InputH = term.getSize()-- 输入框尺寸
+
+local eventData = {}        -- 事件数据
 
 local LButtonDown = false   -- 左键按下状态
 local LButtonDrag = false   -- 左键拖动状态
@@ -26,11 +27,11 @@ local RButtonDrag = false   -- 右键拖动状态
 local InputFocus  = false   -- 输入框焦点状态
 
 local function CursorFlashes()   -- 光标闪烁
-    CursorTemp = HistoryCmd[Cursor.y][Cursor.x]
+    term.setCursorPos(Cursor.x, Cursor.y)
     while true do
-        HistoryCmd[Cursor.y][Cursor.x] = string.char(22)
+        term.write(string.char(0x16))
         sleep(0.5)
-        HistoryCmd[Cursor.y][Cursor.x] = CursorTemp
+        term.write(HistoryCmd[Cursor.y][Cursor.x])
         sleep(0.5)
     end
 end
@@ -43,14 +44,14 @@ local function refreshConsole()  -- 刷新控制台
     term.clear()
 end
 
-while true do                   -- 循环读取命令
+while true do                   -- 消息循环
     parallel.waitForAny(getEventData, CursorFlashes)     -- 同时读取事件和光标闪烁
     
     if eventData == nil then       -- 事件为空
         eventData = {os.pullEvent()}       -- 重新读取事件
     end
 
-    if not InputFocus then                  -- 输入框未焦点
+    
         if eventData[1] == "mouse_click" then   -- 鼠标点击
             if eventData[2] == 1 then               -- 左键单击
                 LButtonDown = true
@@ -94,11 +95,11 @@ while true do                   -- 循环读取命令
             end
         
         end
-    else
+    
         if eventData[1] == "char" then         -- 键盘按键
 
         end
-    end
+    
 
     refreshConsole()
 
