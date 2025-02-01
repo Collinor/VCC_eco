@@ -39,7 +39,32 @@ console.Select = function (stratx, starty, endx, endy)
     
 end
 
-function WaitForNet()
-    sleep (4)
+console.run = function (env, path, pHandle, ...)
+
+end
+
+function WaitSecond()
+    sleep (1)
     return true
 end
+
+function WaitFinite()
+    local time = 0
+    while true do
+        time = time + 1
+        sleep (1)
+    end
+    return time
+end
+
+MetaConsole = {
+    __index = function (table, _)
+        ErrorPrint("[MetaConsole] Cannot find the key")
+        return nil
+    end,
+    __newindex = function (manipulatedTable, _, value)
+        local t = manipulatedTable
+        t[#t+1] = value
+        return 
+    end
+}
