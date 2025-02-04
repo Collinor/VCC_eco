@@ -2,34 +2,29 @@
 --2025 / 1 / 31     11:36:13     Collinor
 
 local codelist = {
-    -- 0x0###     System
+    -- 0x0###     SYS & NET
     [0x0000] = "SYS",
     [0x0001] = "SYS_START",
     [0x0002] = "SYS_SAVE",
     [0x0003] = "SYS_SHUTDOWN",
     [0x0004] = "SYS_EXIT",
 
-    -- 0x1###     SYSERR
+    [0x0800] = "NET",
+    [0x0801] = "NET_INIT",
+
+    -- 0x1###     ERR
     [0x1000] = "ERR",
     [0x1001] = "ERR_SYS_START",
     [0x1002] = "ERR_SYS_SAVE",
     [0x1003] = "ERR_SYS_SHUTDOWN",
     [0x1004] = "ERR_SYS_EXIT",
 
-    -- 0x2###     VCCNET
-    [0x2000] = "NET",
-    [0x2001] = "NET_INIT",
+    -- 0x2###     VCCAPP
+    [0x2000] = "APP",
+    [0x2001] = "APP_LISTINIT",
 
-    -- 0x3###     VCCAPP
-    [0x3000] = "APP",
-    [0x3001] = "APP_LISTINIT",
-
-    -- 0x4###     Operation
-    [0x4000] = "OPT",
-
-    -- 0x5###     SysPort
-    [0x5000] = "PORT",
-    [0x5001] = "PORT_LOAD",
+    -- 0x3###     Operation
+    [0x3000] = "OPT",
 
     -- 0x9### ~ 0xE###   UserDef   
     [0x9000] = "UDEF",
