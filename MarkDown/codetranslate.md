@@ -4,6 +4,14 @@
 
 该库的所有函数都被定义在 **_G** 表当中, 包含一个本地表codelist用于存储指令(directive)和代码(code)的对应关系.
 
+| 函数名 | 描述 |
+| ------ | ---- |
+| getdirective(code) | 获取传入代码对应的指令 |
+| getcode(directive) | 获取传入指令对应的代码 |
+| findcode(directive) | 获取传入指令对应的代码 |
+| addcode(directive, [code) | 向指令表的用户自定义区域中添加指令和代码的对应关系 |
+| delcode(code) | 从指令表的用户自定义区域中删除指令和代码的对应关系 |
+
 ---
 
 ## getdirective(code)
