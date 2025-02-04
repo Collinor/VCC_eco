@@ -6,11 +6,11 @@
 
 | 函数名 | 描述 |
 | ------ | ---- |
-| getdirective(code) | 获取传入代码对应的指令 |
-| getcode(directive) | 获取传入指令对应的代码 |
-| findcode(directive) | 获取传入指令对应的代码 |
-| addcode(directive, [code) | 向指令表的用户自定义区域中添加指令和代码的对应关系 |
-| delcode(code) | 从指令表的用户自定义区域中删除指令和代码的对应关系 |
+| [getdirective(code)](https://github.com/Collinor/VCC_eco/blob/main/MarkDown/codetranslate.md#getdirectivecode) | 获取传入代码对应的指令 |
+| [getcode(directive)](https://github.com/Collinor/VCC_eco/blob/main/MarkDown/codetranslate.md#getcodedirective) | 获取传入指令对应的代码 |
+| [findcode(directive)](https://github.com/Collinor/VCC_eco/blob/main/MarkDown/codetranslate.md#findcodedirective) | 获取传入指令对应的代码 |
+| [addcode(directive, [code)]](https://github.com/Collinor/VCC_eco/blob/main/MarkDown/codetranslate.md#addcodedirective-code) | 向指令表的用户自定义区域中添加指令和代码的对应关系 |
+| [delcode(code)](https://github.com/Collinor/VCC_eco/blob/main/MarkDown/codetranslate.md#delcodecode) | 从指令表的用户自定义区域中删除指令和代码的对应关系 |
 
 ---
 
