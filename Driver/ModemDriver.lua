@@ -1,14 +1,15 @@
---VCC_eco   webio.lua -> ModemDevice.lua
+--VCC_eco   webio.lua -> ModemDevice.lua -> ModemDriver.lua
 --2024 / 10 / 30     20:18:56     Collinor
 
 
 
+tArgs = {...}
 
-modem = nil
+local modem = nil
 
 
 -------------------- ModemDevice 初始化 --------------------
-local vccnet = 
+local vccnet =
 {
     cid                     = os.getComputerID() -- 计算机ID
 }
@@ -134,4 +135,7 @@ end
 
 
 
-return vccnet
+-------------------- 公共端口 --------------------
+VCCNET = {
+    lIP = vccnet.IP,
+}
